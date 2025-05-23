@@ -864,7 +864,7 @@ AUTOR
     Desenvolvido para extração de dados do Portal Citius.
 
 BUGS
-    Nenhum bug conhecido. Reporte problemas em https://github.com/seu-usuario/citius-scraper/issues
+    Nenhum bug conhecido. Reporte problemas em https://github.com/Raam977/citius-scraper/issues
 """
     print(manual)
 
