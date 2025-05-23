@@ -98,8 +98,6 @@ Os resultados são exportados em dois formatos:
 - `citius_scraper_final_v2.py`: Script principal com todas as funcionalidades
 - `requirements.txt`: Dependências do projeto
 - `README.md`: Documentação do projeto
-- `exemplo_resultados.json`: Exemplo de resultados em formato JSON
-- `exemplo_resultados.csv`: Exemplo de resultados em formato CSV
 
 ## Limitações
 
