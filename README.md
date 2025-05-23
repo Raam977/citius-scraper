@@ -15,7 +15,7 @@ Um scraper em Python para extrair informações do Portal Citius (https://www.ci
 ## Requisitos
 
 - Python 3.6+
-- Bibliotecas: requests, beautifulsoup4
+- Bibliotecas: requests, beautifulsoup4, rich (para interface visual)
 
 ## Instalação
 
