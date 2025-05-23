@@ -12,6 +12,10 @@ Um scraper em Python para extrair informações do Portal Citius (https://www.ci
 - Suporte a diferentes formatos de apresentação de resultados
 - Sem necessidade de captcha ou autenticação
 
+
+https://github.com/user-attachments/assets/80b48231-b4cd-4799-b6a3-9a9498f66d1b
+
+
 ## Requisitos
 
 - Python 3.6+
