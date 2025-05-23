@@ -780,14 +780,128 @@ def format_date(date_str):
     except ValueError:
         return date_str
 
+def print_manual():
+    """
+    Exibe o manual de utilização do script
+    """
+    manual = """
+NOME
+    citius_scraper.py - Web scraping do Portal Citius
+
+SINOPSE
+    citius_scraper.py [OPÇÕES]
+
+DESCRIÇÃO
+    Ferramenta para extrair informações do Portal Citius (https://www.citius.mj.pt/portal/consultas/consultascire.aspx),
+    permitindo pesquisas por NIF/NIPC ou designação com intervalo de datas.
+
+OPÇÕES
+    --nif NIF
+        NIF/NIPC para pesquisa. Deve ser fornecido se --designacao não for usado.
+
+    --designacao DESIGNACAO
+        Designação para pesquisa. Deve ser fornecido se --nif não for usado.
+
+    --data-inicio DATA_INICIO
+        Data de início no formato YYYY-MM-DD.
+
+    --data-fim DATA_FIM
+        Data de fim no formato YYYY-MM-DD.
+
+    --tribunal {nova,extintos}
+        Tipo de tribunal (nova estrutura ou extintos).
+
+    --grupo-actos GRUPO_ACTOS
+        ID do grupo de actos.
+
+    --acto ACTO
+        ID do acto específico.
+
+    --output OUTPUT
+        Arquivo de saída (CSV). Por padrão: resultados_citius.csv.
+
+    --debug
+        Ativar modo de debug com mais logs.
+
+    --man
+        Exibe este manual de utilização.
+
+    -h, --help
+        Exibe a ajuda resumida.
+
+EXEMPLOS
+    Pesquisa por NIF:
+        python citius_scraper.py --nif 515755230 --output resultados.csv
+
+    Pesquisa por designação:
+        python citius_scraper.py --designacao "Nome da Empresa" --output resultados.csv
+
+    Filtrar por intervalo de datas:
+        python citius_scraper.py --nif 515755230 --data-inicio 2023-01-01 --data-fim 2023-12-31 --output resultados.csv
+
+    Ativar modo de debug:
+        python citius_scraper.py --nif 515755230 --debug --output resultados.csv
+
+ARQUIVOS
+    resultados_citius.csv
+        Arquivo CSV padrão para saída dos resultados.
+
+    resultados_citius.json
+        Arquivo JSON gerado automaticamente com a estrutura completa dos resultados.
+
+    citius_scraper.log
+        Arquivo de log gerado durante a execução.
+
+    debug_form_page.html, debug_results_page.html
+        Arquivos HTML salvos no modo de debug para análise.
+
+NOTAS
+    - O script sempre usa a opção "Todos" para o filtro de dias, garantindo que todos os resultados sejam encontrados.
+    - Os resultados são exportados em dois formatos: CSV e JSON.
+    - O formato JSON preserva a estrutura completa dos dados, incluindo listas de credores.
+
+AUTOR
+    Desenvolvido para extração de dados do Portal Citius.
+
+BUGS
+    Nenhum bug conhecido. Reporte problemas em https://github.com/seu-usuario/citius-scraper/issues
+"""
+    print(manual)
+
 def main():
     """Função principal"""
-    parser = argparse.ArgumentParser(description='Web scraping do Portal Citius')
+    parser = argparse.ArgumentParser(
+        description='Web scraping do Portal Citius',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Exemplos:
+  Pesquisa por NIF:
+    python %(prog)s --nif 515755230 --output resultados.csv
+
+  Pesquisa por designação:
+    python %(prog)s --designacao "Nome da Empresa" --output resultados.csv
+
+  Filtrar por intervalo de datas:
+    python %(prog)s --nif 515755230 --data-inicio 2023-01-01 --data-fim 2023-12-31 --output resultados.csv
+
+  Ativar modo de debug:
+    python %(prog)s --nif 515755230 --debug --output resultados.csv
+
+  Exibir manual completo:
+    python %(prog)s --man
+"""
+    )
+    
+    # Verificar se --man foi passado
+    if '--man' in sys.argv:
+        print_manual()
+        return
     
     # Grupo de argumentos mutuamente exclusivos para NIF ou designação
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--nif', help='NIF/NIPC para pesquisa')
     group.add_argument('--designacao', help='Designação para pesquisa')
+    group.add_argument('--man', action='store_true', help='Exibe o manual de utilização completo')
     
     # Argumentos para datas
     parser.add_argument('--data-inicio', help='Data de início no formato YYYY-MM-DD')
@@ -831,4 +945,5 @@ def main():
     logger.info(f"Total de resultados encontrados: {len(results)}")
 
 if __name__ == "__main__":
+    import sys
     main()
