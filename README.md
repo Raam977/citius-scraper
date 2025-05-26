@@ -5,7 +5,7 @@ Um scraper em Python para extrair informações do Portal Citius (https://www.ci
 
 ## Nova Versão
 
-Foi lançada uma nova versão em [Citius Selenium Scraper]([https://www.citius.mj.pt/](https://github.com/Raam977/citius-selenium-scraper.git))  onde é utilizado o Selenium WebDriver para ultrupassar problemas de limitações de reitrada
+Foi lançada uma nova versão em [Citius Selenium Scraper]([https://www.citius.mj.pt/](https://github.com/Raam977/citius-selenium-scraper.git)  onde é utilizado o Selenium WebDriver para ultrupassar problemas de limitações de reitrada
 ## Características
 
 - Pesquisa por NIF/NIPC ou designação
